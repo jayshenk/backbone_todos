@@ -1,7 +1,16 @@
 var App = {
+  templates: cacheTemplates(),
+  updateStorage: function() {
+    localStorage.setItem("todos", JSON.stringify(this.todos.toJSON()));
+  },
+  bindEvents: function() {
+    _.extend(this, Backbone.Events);
+    $(window).on("unload", this.updateStorage.bind(this));
+  },
   initialize: function() {
-    this.templates = cacheTemplates();
     this.todos = new Todos(JSON.parse(localStorage.getItem("todos")));
+    this.todoList = new TodoListView({ collection: this.todos });
+    this.bindEvents();
   }
 };
 
@@ -20,5 +29,3 @@ function cacheTemplates() {
 
   return templates;
 }
-
-App.initialize();

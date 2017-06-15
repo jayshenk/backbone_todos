@@ -14,29 +14,26 @@
     <nav>
     </nav>
 
-    <main>
-      <header>
-        <label for="nav"><img src="images/icon_hamburger.png" alt="menu"></label>
-        <dl>
-          <dt class="title"></dt>
-          <dd><span class="count"></span></dd>
-        </dl>
-        <h2><a id="add" href="#">Add new to do</a></h2>
-      </header>
-      <ul id="todo-list">
-      </ul>
+    <main id="todo-list">
     </main>
 
     <div id="modal">
     </div>
 
     <script id="todoList" type="text/x-handlebars">
-      {{#each incomplete}}
-      {{> todoTmpl}}
-      {{/each}}
-      {{#each completed}}
-      {{> todoTmpl}}
-      {{/each}}
+      <header>
+        <label for="nav"><img src="images/icon_hamburger.png" alt="menu"></label>
+        <dl>
+          <dt class="title">{{title}}</dt>
+          <dd><span class="count">{{count}}</span></dd>
+        </dl>
+        <h2><a id="add" href="#">Add new to do</a></h2>
+      </header>
+      <ul>
+        {{#each todos}}
+        {{> todoTmpl}}
+        {{/each}}
+      </ul>
     </script>
 
     <script id="todoTmpl" data-type="partial" type="text/x-handlebars">
@@ -163,7 +160,7 @@
           <h2 class="title">{{title}}</h2>
           <p><span class="count">{{count}}</span></p>
         </header>
-        {{#each datesWithCounts }}
+        {{#each datesWithCounts}}
         {{> month}}
         {{/each}}
       </section>
@@ -176,8 +173,10 @@
       </dl>
     </script>
 
+    <script src="javascripts/app.js"></script>
     <script src="javascripts/models/todo.js"></script>
     <script src="javascripts/collections/todos.js"></script>
-    <script src="javascripts/app.js"></script>
+    <script src="javascripts/views/todo_list.js"></script>
+    <script>App.initialize();</script>
   </body>
 </html>
