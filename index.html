@@ -17,9 +17,6 @@
     <main id="todo-list">
     </main>
 
-    <div id="modal">
-    </div>
-
     <script id="todoList" type="text/x-handlebars">
       <header>
         <label for="nav"><img src="images/icon_hamburger.png" alt="menu"></label>
@@ -27,7 +24,7 @@
           <dt class="title">{{title}}</dt>
           <dd><span class="count">{{count}}</span></dd>
         </dl>
-        <h2><a id="add" href="#">Add new to do</a></h2>
+        <h2><a class="add" href="#">Add new todo</a></h2>
       </header>
       <ul>
         {{#each todos}}
@@ -53,9 +50,8 @@
     </script>
 
     <script id="modalTmpl" type="text/x-handlebars">
-      <form action="" method="post">
+      <form action="/" method="post">
         <fieldset>
-          <input type="hidden" name="id" id="id" value="{{id}}" />
           <dl>
             <dt><label for="title">Title</label></dt>
             <dd><input type="text" name="title" id="title" placeholder="Title" value="{{title}}" /></dd>
@@ -177,6 +173,7 @@
     <script src="javascripts/models/todo.js"></script>
     <script src="javascripts/collections/todos.js"></script>
     <script src="javascripts/views/todo_list.js"></script>
+    <script src="javascripts/views/modal.js"></script>
     <script>App.initialize();</script>
   </body>
 </html>
