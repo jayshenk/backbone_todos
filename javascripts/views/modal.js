@@ -26,9 +26,7 @@ var ModalView = Backbone.View.extend({
     this.destroy();
   },
   destroy: function() {
-    this.$el.fadeOut(400, function() {
-      this.remove();
-    }.bind(this));
+    this.$el.fadeOut(400, this.remove.bind(this));
   },
   render: function() {
     if (this.model) {
