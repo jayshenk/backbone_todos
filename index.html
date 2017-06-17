@@ -52,6 +52,7 @@
     <script id="modalTmpl" type="text/x-handlebars">
       <form action="/" method="post">
         <fieldset>
+          <input type="hidden" name="id" id="id" value="{{id}}" />
           <dl>
             <dt><label for="title">Title</label></dt>
             <dd><input type="text" name="title" id="title" placeholder="Title" value="{{title}}" /></dd>

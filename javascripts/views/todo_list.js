@@ -3,6 +3,7 @@ var TodoListView = Backbone.View.extend({
   template: App.templates.todoList,
   events: {
     "click a.add": "newTodo",
+    "click label": "editTodo",
     "click div.todo": "toggleComplete",
     "click a.delete": "deleteTodo"
   },
@@ -13,6 +14,14 @@ var TodoListView = Backbone.View.extend({
     var id = this.getID(e);
 
     this.collection.trigger("toggle_complete", id);
+  },
+  editTodo: function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var id = this.getID(e);
+    var todo = this.collection.get(id);
+
+    App.trigger("edit_todo", todo);
   },
   deleteTodo: function(e) {
     e.preventDefault();

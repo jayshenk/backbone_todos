@@ -32,6 +32,9 @@ var App = {
   newTodo: function() {
     new ModalView();
   },
+  editTodo: function(todo) {
+    new ModalView({ model: todo });
+  },
   updateTodo: function($form) {
     var todo = getFormObject($form);
     this.todos.addOrUpdate(todo);
@@ -46,6 +49,7 @@ var App = {
   bindEvents: function() {
     _.extend(this, Backbone.Events);
     this.on("new_todo", this.newTodo);
+    this.on("edit_todo", this.editTodo);
     this.on("update_todo", this.updateTodo);
     $(window).on("unload", this.updateStorage.bind(this));
   },

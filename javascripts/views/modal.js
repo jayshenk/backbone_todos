@@ -1,8 +1,9 @@
 var ModalView = Backbone.View.extend({
   id: "modal",
   events: {
-    "click": "cancel",
-    "submit": "updateTodo"
+    "submit": "updateTodo",
+    "click #complete": "completeTodo",
+    "click": "cancel"
   },
   template: App.templates.modalTmpl,
   cancel: function(e) {
@@ -16,13 +17,26 @@ var ModalView = Backbone.View.extend({
     App.trigger("update_todo", $form);
     this.destroy();
   },
+  completeTodo: function() {
+    if (this.model) {
+      this.model.set("complete", true);
+    } else {
+      alert("Cannot mark as complete as item has not been created yet!");
+    }
+    this.destroy();
+  },
   destroy: function() {
     this.$el.fadeOut(400, function() {
       this.remove();
     }.bind(this));
   },
   render: function() {
-    this.$el.html(this.template()).insertAfter($("main")).fadeIn();
+    if (this.model) {
+      this.$el.html(this.template(this.model.toJSON()));
+    } else {
+      this.$el.html(this.template());
+    }
+    this.$el.insertAfter($("main")).fadeIn();
   },
   initialize: function(){
     this.render();
