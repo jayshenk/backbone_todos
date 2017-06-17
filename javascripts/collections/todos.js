@@ -1,5 +1,6 @@
 var Todos = Backbone.Collection.extend({
   model: Todo,
+  comparator: "complete",
   title: "All Todos",
   lastID: 0,
   filters: {},
@@ -9,6 +10,7 @@ var Todos = Backbone.Collection.extend({
   toggleComplete: function(id) {
     var todo = this.get(id);
     todo.set("complete", !todo.get("complete"));
+    this.sort();
   },
   addOrUpdate: function(todo) {
     todo.id = todo.id || ++this.lastID;

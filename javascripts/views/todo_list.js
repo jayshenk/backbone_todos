@@ -33,6 +33,6 @@ var TodoListView = Backbone.View.extend({
   },
   initialize: function() {
     this.render();
-    this.listenTo(this.collection, "update change", this.render);
+    this.listenTo(this.collection, "update change sort", this.render);
   }
 });
