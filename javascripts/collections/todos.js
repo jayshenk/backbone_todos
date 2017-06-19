@@ -20,6 +20,34 @@ var Todos = Backbone.Collection.extend({
     if (!this.length) { return; }
     this.lastID = _(this.toJSON()).max(function(todo) { return todo.id; }).id;
   },
+  completedItems: function() {
+    return _(this.toJSON()).where({ complete: true });
+  },
+  completedCount: function() {
+    return this.completedItems().length;
+  },
+  sortByDueDate: function(todos) {
+    return todos.sort(function(todo1, todo2) {
+      var n = Number(todo1.year) - Number(todo2.year);
+      if (n !== 0) { return n; }
+      return Number(todo1.month) - Number(todo2.month);
+    });
+  },
+  dateCounts: function(completed) {
+    var todos = completed ? this.completedItems() : this.toJSON();
+    var result = {};
+
+    this.sortByDueDate(todos).forEach(function(todo) {
+      var dueDate = todo.dueDate;
+
+      if (result[dueDate]) {
+        result[dueDate] = result[dueDate] + 1;
+      } else {
+        result[dueDate] = 1;
+      }
+    });
+    return result;
+  },
   initialize: function() {
     this.on("toggle_complete", this.toggleComplete);
   }

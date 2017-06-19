@@ -42,7 +42,8 @@
           <input type="checkbox" name="item-{{id}}" id="item-{{id}}" />
           {{/if}}
           <label for="item-{{id}}">
-            {{title}} - <span class="due-date">{{dueDate}}</span>
+            {{title}} - 
+            <span class="due-date">{{dueDate}}</span>
           </label>
         </div>
         <a class="delete" href="#"></a>
@@ -151,13 +152,22 @@
       </form>
     </script>
 
-    <script id="group" data-type="partial" type="text/x-handlebars">
-      <section id="{{id}}">
+    <script id="navTmpl" type="text/x-handlebars">
+      <section id="all">
         <header class="row">
-          <h2 class="title">{{title}}</h2>
+          <h2 class="title">All Todos</h2>
           <p><span class="count">{{count}}</span></p>
         </header>
-        {{#each datesWithCounts}}
+        {{#each dateCounts}}
+        {{> month}}
+        {{/each}}
+      </section>
+      <section id="completed">
+        <header class="row">
+          <h2 class="title">Completed</h2>
+          <p><span class="count">{{completedCount}}</span></p>
+        </header>
+        {{#each completedDateCounts}}
         {{> month}}
         {{/each}}
       </section>
@@ -175,6 +185,7 @@
     <script src="javascripts/collections/todos.js"></script>
     <script src="javascripts/views/todo_list.js"></script>
     <script src="javascripts/views/modal.js"></script>
+    <script src="javascripts/views/nav.js"></script>
     <script>App.initialize();</script>
   </body>
 </html>

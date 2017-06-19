@@ -56,6 +56,7 @@ var App = {
   initialize: function() {
     this.readStorage();
     this.todoList = new TodoListView({ collection: this.todos });
+    this.nav = new NavView({ collection: this.todos });
     this.bindEvents();
   }
 };

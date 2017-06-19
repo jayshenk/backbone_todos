@@ -5,7 +5,7 @@ var Todo = Backbone.Model.extend({
   setDueDate: function() {
     var newDueDate;
     if (this.get("month") && this.get("year")) {
-      newDueDate = this.get("month") + "/" + this.get("year").slice(2, 4);
+      newDueDate = this.get("month") + "/" + this.get("year").slice(2);
     } else {
       newDueDate = "No Due Date";
     }
