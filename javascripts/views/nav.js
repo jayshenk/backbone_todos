@@ -26,6 +26,11 @@ var NavView = Backbone.View.extend({
     this.setActiveRow($row);
     this.collection.trigger("select_due_date", dueDate, complete);
   },
+  showAll: function() {
+    this.setActiveRow(this.$("#all header"));
+    this.collection.trigger("select_all");
+    this.render();
+  },
   render: function() {
     var id = this.$(".active").closest("section").attr("id");
     var title = this.$(".active").find(".title").text();
@@ -40,6 +45,7 @@ var NavView = Backbone.View.extend({
   initialize: function() {
     this.render();
     this.$("#all header").addClass("active");
-    this.listenTo(this.collection, "add remove change", this.render);
+    this.listenTo(this.collection, "remove change", this.render);
+    this.listenTo(this.collection, "add", this.showAll);
   }
 });
