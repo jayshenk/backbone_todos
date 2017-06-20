@@ -48,7 +48,26 @@ var Todos = Backbone.Collection.extend({
     });
     return result;
   },
+  selectAll: function() {
+    this.filters = {};
+    this.title = "All Todos";
+    this.trigger("group_selected");
+  },
+  selectCompleted: function() {
+    this.filters = { complete: true };
+    this.title = "Completed";
+    this.trigger("group_selected");
+  },
+  selectDueDate: function(dueDate, complete) {
+    this.filters = { dueDate: dueDate };
+    if (complete) { this.filters.complete = true; }
+    this.title = dueDate;
+    this.trigger("group_selected");
+  },
   initialize: function() {
     this.on("toggle_complete", this.toggleComplete);
+    this.on("select_all", this.selectAll);
+    this.on("select_completed", this.selectCompleted);
+    this.on("select_due_date", this.selectDueDate);
   }
 });

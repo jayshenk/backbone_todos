@@ -155,7 +155,7 @@
     <script id="navTmpl" type="text/x-handlebars">
       <section id="all">
         <header class="row">
-          <h2 class="title">All Todos</h2>
+          <h2 class="title" data-title="All Todos">All Todos</h2>
           <p><span class="count">{{count}}</span></p>
         </header>
         {{#each dateCounts}}
@@ -164,7 +164,7 @@
       </section>
       <section id="completed">
         <header class="row">
-          <h2 class="title">Completed</h2>
+          <h2 class="title" data-title="Completed">Completed</h2>
           <p><span class="count">{{completedCount}}</span></p>
         </header>
         {{#each completedDateCounts}}
@@ -175,7 +175,7 @@
 
     <script id="month" data-type="partial" type="text/x-handlebars">
       <dl class="row">
-        <dt class="title">{{@key}}</dt>
+        <dt class="title" data-title="{{@key}}">{{@key}}</dt>
         <dd><span class="count">{{.}}</span></dd>
       </dl>
     </script>
