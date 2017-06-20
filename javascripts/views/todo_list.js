@@ -3,7 +3,7 @@ var TodoListView = Backbone.View.extend({
   template: App.templates.todoList,
   events: {
     "click a.add": "newTodo",
-    "click label": "editTodo",
+    "click .todo label": "editTodo",
     "click div.todo": "toggleComplete",
     "click a.delete": "deleteTodo"
   },
